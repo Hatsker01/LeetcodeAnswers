@@ -1,30 +1,26 @@
-func sortSentence(s string) string {
-	m := make(map[int]string)
-	var ints []int
-	var t string = ""
-	var f int = 0
-	for i := 0; i < len(s); i++ {
-		if s[i] >= '0' && s[i] <= '9' {
-			j, _ := strconv.Atoi(string(s[i]))
-			m[j] = string(s[f:i])
+package main
 
-			f = i + 2
-			ints = append(ints, j)
-		} else if string(s[i]) == " " {
-			continue
-		}
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
 
-	}
+func main() {
 
-	sort.Ints(ints)
+	url := "https://telesign-telesign-send-sms-verification-code-v1.p.rapidapi.com/sms-verification-code?verifyCode=1231232&phoneNumber=%2B998933433379&appName=optional"
 
-	for i := 0; i < len(ints); i++ {
-		if i == len(ints)-1 {
-			t += m[ints[i]]
-		} else {
-			t += m[ints[i]] + " "
+	req, _ := http.NewRequest("POST", url, nil)
 
-		}
-	}
-	return t
+	req.Header.Add("X-RapidAPI-Key", "b9697df1a9mshf5ebaf2cdd51281p11752djsn140388e4501b")
+	req.Header.Add("X-RapidAPI-Host", "telesign-telesign-send-sms-verification-code-v1.p.rapidapi.com")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
 }
