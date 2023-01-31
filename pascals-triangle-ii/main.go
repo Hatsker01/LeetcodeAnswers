@@ -4,24 +4,17 @@ import "fmt"
 
 func main() {
 
-	fmt.Println(getRow(5))
+	fmt.Println(getRow(4))
 }
-func getRow(numRows int) [][]int {
-	var num [][]int
-
-	for i := 1; i <= numRows; i++ {
-		var b []int
-
-		for k := 0; k < i; k++ {
-
-			if k == 0 || k == i-1 {
-				b = append(b, 1)
-			} else {
-				b = append(b, (b[k-1]*(i-k))/k)
-			}
-
+func getRow(rowIndex int) []int {
+	var num []int
+	rowIndex++
+	for i := 0; i < rowIndex; i++ {
+		if i == 0 || i == rowIndex-1 {
+			num = append(num, 1)
+		} else {
+			num = append(num, (num[i-1]*(rowIndex-i))/i)
 		}
-		num = append(num, b)
 	}
 	return num
 }
