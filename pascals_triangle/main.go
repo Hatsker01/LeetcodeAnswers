@@ -4,9 +4,9 @@ import "fmt"
 
 func main() {
 
-	fmt.Println(getRow(5))
+	fmt.Println(generate(5))
 }
-func getRow(numRows int) [][]int {
+func generate(numRows int) [][]int {
 	var num [][]int
 
 	for i := 1; i <= numRows; i++ {
