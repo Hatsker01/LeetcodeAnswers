@@ -19,5 +19,6 @@ func removeDuplicates(nums []int) int {
 			nums[count] = nums[i]
 		}
 	}
+	fmt.Println(nums)
 	return count + 1
 }
