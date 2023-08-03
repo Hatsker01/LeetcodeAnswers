@@ -14,7 +14,7 @@ func strStr(haystack string, needle string) int {
 		// index int = 0
 		j int = 0
 	)
-	if len(needle)>len(haystack){
+	if len(needle) > len(haystack) {
 		return -1
 	}
 	for i := 0; i < len(haystack); i++ {
@@ -30,7 +30,7 @@ func strStr(haystack string, needle string) int {
 				// if haystack[k] == needle[0]{
 				// 	j=1
 				// }
-				
+
 			}
 		}
 	}
