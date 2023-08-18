@@ -1,11 +1,23 @@
-func titleToNumber(columnTitle string) int {
-	var sum int = 0
-	for i := len(columnTitle) - 1; i >= 0; i-- {
-		if i == len(columnTitle)-1 {
-			sum += int(columnTitle[i] - 64)
-		} else {
-			sum += int(columnTitle[i]-64) * int(math.Pow(26, float64(len(columnTitle)-i-1)))
-		}
+package main
+
+import "fmt"
+
+func Valid(s string) bool {
+	if len(s) == 1 {
+		return false
+	} else if s == "" {
+		return true
+	} else if (s[0] == '{' && s[1] == '}') || (s[0] == '[' && s[1] == ']') || (s[0] == '(' && s[1] == ')') {
+		s = s[2:]
+		return Valid(s)
+	} else if (s[0] == '{' && s[len(s)-1] == '}') || (s[0] == '[' && s[len(s)-1] == ']') || (s[0] == '(' && s[len(s)-1] == ')') {
+		s = s[1 : len(s)-1]
+		return Valid(s)
 	}
-	return sum
+	return false
+}
+func main() {
+	fmt.Println(Valid("(([]){})"))
+
+	// fmt.Println(convertToTitle(28))
 }
